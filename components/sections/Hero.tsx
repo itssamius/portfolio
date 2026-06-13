@@ -1,13 +1,27 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { site } from "@/lib/site";
 import { featuredProjects } from "@/lib/projects";
 import { Reveal } from "@/components/ui/Reveal";
 
 export function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], prefersReducedMotion ? [0, 0] : [0, -40]);
+
   return (
-    <section id="top" className="mx-auto max-w-container px-6 pb-16 pt-20 md:pb-24 md:pt-32">
+    <section ref={sectionRef} id="top" className="mx-auto max-w-container px-6 pb-16 pt-20 md:pb-24 md:pt-32">
       <Reveal>
         <h1 className="max-w-4xl font-display text-5xl font-bold leading-[0.95] tracking-tight md:text-8xl">
           {site.heroHeadline}
@@ -17,7 +31,7 @@ export function Hero() {
         <p className="mt-6 max-w-xl text-lg text-muted">{site.heroSub}</p>
       </Reveal>
 
-      <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <motion.div style={{ y }} className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {featuredProjects.map((p, i) => (
           <Reveal key={p.slug} delay={0.15 + i * 0.08}>
             <Link
@@ -31,6 +45,7 @@ export function Hero() {
                   src={p.image}
                   alt={p.name}
                   fill
+                  {...(i === 0 ? { priority: true } : {})}
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
@@ -42,7 +57,7 @@ export function Hero() {
             </Link>
           </Reveal>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }

@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { site } from "@/lib/site";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
