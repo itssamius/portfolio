@@ -7,8 +7,15 @@ const display = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-disp
 const sans = Inter({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://samuelabera.com"),
   title: "Samuel Abera — Senior Full Stack Developer",
-  description: "Senior full-stack developer in Toronto building e-commerce, apps, and products with React, Rails, and TypeScript.",
+  description:
+    "Senior full-stack developer in Toronto building e-commerce, apps, and products with React, Rails, and TypeScript.",
+  openGraph: {
+    title: "Samuel Abera — Senior Full Stack Developer",
+    description: "Senior full-stack developer in Toronto. React · Rails · TypeScript.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
