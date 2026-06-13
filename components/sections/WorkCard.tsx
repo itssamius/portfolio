@@ -9,26 +9,31 @@ export function WorkCard({ project }: { project: Project }) {
       href={project.href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-bg-elev transition-colors hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+      className="group relative block aspect-[4/3] overflow-hidden rounded-2xl border border-border transition-colors hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
     >
-      <div className="relative aspect-[16/10] overflow-hidden">
-        <Image
-          src={project.image}
-          alt={project.name}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, 50vw"
-        />
-      </div>
-      <div className="flex flex-1 flex-col p-6">
-        <div className="flex items-start justify-between gap-4">
-          <h3 className="font-display text-xl font-semibold">{project.name}</h3>
-          <ArrowUpRight size={18} className="mt-1 shrink-0 text-muted transition-colors group-hover:text-accent" />
+      <Image
+        src={project.image}
+        alt={project.name}
+        fill
+        className="object-cover transition-transform duration-500 group-hover:scale-105"
+        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 p-5">
+        <div className="flex items-center justify-between gap-3">
+          <h3 className="font-display text-xl font-semibold text-white">{project.name}</h3>
+          <ArrowUpRight
+            size={18}
+            className="shrink-0 text-white/60 transition-colors group-hover:text-accent"
+          />
         </div>
-        <p className="mt-2 text-sm text-muted">{project.tagline}</p>
-        <div className="mt-4 flex flex-wrap gap-2">
+        <p className="mt-1 line-clamp-1 text-sm text-white/70">{project.tagline}</p>
+        <div className="mt-3 flex flex-wrap gap-2">
           {project.tags.map((t) => (
-            <span key={t} className="rounded-full border border-border px-3 py-1 text-xs text-muted">
+            <span
+              key={t}
+              className="rounded-full border border-white/20 bg-black/20 px-3 py-1 text-xs text-white/80 backdrop-blur-sm"
+            >
               {t}
             </span>
           ))}
