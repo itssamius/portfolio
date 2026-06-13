@@ -11,10 +11,10 @@ export function Contact() {
       </Reveal>
       <Reveal delay={0.1}>
         <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 text-lg">
-          <a href={`mailto:${site.email}`} className="text-accent underline-offset-4 hover:underline">
+          <a href={`mailto:${site.email}`} className="text-accent underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded">
             {site.email}
           </a>
-          <a href={site.github} target="_blank" rel="noopener noreferrer" className="text-muted hover:text-fg">
+          <a href={site.github} target="_blank" rel="noopener noreferrer" className="text-muted hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded">
             GitHub ↗
           </a>
           <span className="text-muted">{site.phone}</span>

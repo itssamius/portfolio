@@ -24,7 +24,7 @@ export function Hero() {
               href={p.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block overflow-hidden rounded-2xl border border-border bg-bg-elev transition-colors hover:border-accent"
+              className="group block overflow-hidden rounded-2xl border border-border bg-bg-elev transition-colors hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
             >
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image

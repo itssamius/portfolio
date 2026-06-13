@@ -16,7 +16,7 @@ export function Button({
   className?: string;
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>) {
   const base =
-    "inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-colors";
+    "inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
   const styles =
     variant === "primary"
       ? "bg-accent text-accent-fg hover:opacity-90"

@@ -28,7 +28,7 @@ export function Work() {
             type="button"
             onClick={() => setFilter(f.key)}
             className={clsx(
-              "rounded-full px-4 py-2 text-sm transition-colors",
+              "rounded-full px-4 py-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg",
               filter === f.key
                 ? "bg-accent text-accent-fg"
                 : "border border-border text-muted hover:text-fg"

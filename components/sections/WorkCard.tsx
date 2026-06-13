@@ -9,7 +9,7 @@ export function WorkCard({ project }: { project: Project }) {
       href={project.href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-bg-elev transition-colors hover:border-accent"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-bg-elev transition-colors hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
     >
       <div className="relative aspect-[16/10] overflow-hidden">
         <Image
