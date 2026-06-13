@@ -10,6 +10,14 @@ vi.mock("next/image", () => ({
   },
 }));
 
+// jsdom has no IntersectionObserver; stub it so framer-motion's useInView doesn't throw
+const mockIntersectionObserver = vi.fn().mockImplementation(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
+}));
+window.IntersectionObserver = mockIntersectionObserver;
+
 // jsdom has no matchMedia; default to reduced motion in tests
 Object.defineProperty(window, "matchMedia", {
   writable: true,
