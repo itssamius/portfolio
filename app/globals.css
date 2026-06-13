@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --bg: 250 250 248;          /* warm off-white */
+  --bg-elev: 255 255 255;
+  --fg: 10 10 10;             /* near-black */
+  --muted: 90 90 88;
+  --border: 225 225 220;
+  --accent: 255 138 61;       /* warm amber #FF8A3D */
+  --accent-fg: 10 10 10;
+}
+
+.dark {
+  --bg: 10 10 10;             /* near-black */
+  --bg-elev: 22 22 22;
+  --fg: 245 245 240;          /* off-white */
+  --muted: 150 150 145;
+  --border: 38 38 36;
+  --accent: 255 138 61;
+  --accent-fg: 10 10 10;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: rgb(var(--bg));
+    color: rgb(var(--fg));
+    font-feature-settings: "ss01", "cv01";
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: rgb(var(--accent)); color: rgb(var(--accent-fg)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
