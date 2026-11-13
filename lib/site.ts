@@ -10,15 +10,9 @@ export const site = {
     "Senior full-stack developer in Toronto — React, Rails, and everything from e-commerce storefronts to native apps.",
   bio: "Senior Full Stack Developer with 5+ years building scalable applications with Ruby on Rails and React. Currently at Grocer Box Inc. in Toronto, I ship everything from conversion-focused e-commerce to native apps and experimental products.",
   nav: [
-    { label: "Work", href: "#work" },
-    { label: "About", href: "#about" },
-    { label: "Contact", href: "#contact" },
-  ],
-  stats: [
-    { value: 5, suffix: "+", label: "Years experience" },
-    { value: 15, suffix: "+", label: "Projects shipped" },
-    { value: 9, suffix: "", label: "Live client sites" },
-    { value: 60, suffix: "%", label: "Traffic lift at Grocer Box" },
+    { label: "Work", href: "/#work" },
+    { label: "About", href: "/#about" },
+    { label: "Contact", href: "/#contact" },
   ],
   skills: [
     {
