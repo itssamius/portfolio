@@ -62,9 +62,7 @@ export function Hero() {
           {featuredProjects.map((p, i) => (
             <Reveal key={p.slug} delay={i * 0.08}>
               <Link
-                href={p.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={`/work/${p.slug}`}
                 className="group relative block aspect-[4/5] overflow-hidden rounded-2xl border border-border transition-colors hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
               >
                 <Image

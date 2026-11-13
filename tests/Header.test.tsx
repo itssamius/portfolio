@@ -8,7 +8,7 @@ describe("Header", () => {
   it("renders the name mark and nav links", () => {
     render(<Header />);
     expect(screen.getByText("Samuel Abera")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Work" })).toHaveAttribute("href", "#work");
+    expect(screen.getByRole("link", { name: "Work" })).toHaveAttribute("href", "/#work");
     expect(screen.getByRole("link", { name: "About" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Contact" })).toBeInTheDocument();
   });

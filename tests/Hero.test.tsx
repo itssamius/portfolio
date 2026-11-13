@@ -6,8 +6,8 @@ describe("Hero", () => {
   it("renders the headline and the three featured projects", () => {
     render(<Hero />);
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("I build software that ships.");
-    expect(screen.getByText("Caravan")).toBeInTheDocument();
-    expect(screen.getByText("Blackjack")).toBeInTheDocument();
-    expect(screen.getByText("Fitness Tracker")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Journey/ })).toHaveAttribute("href", "/work/journey");
+    expect(screen.getByRole("link", { name: /Blackjack/ })).toHaveAttribute("href", "/work/blackjack");
+    expect(screen.getByRole("link", { name: /Folio/ })).toHaveAttribute("href", "/work/folio");
   });
 });
