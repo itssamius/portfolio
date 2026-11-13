@@ -7,16 +7,28 @@ describe("Work", () => {
     render(<Work />);
     const grid = screen.getByTestId("work-grid");
 
-    // default: all 15 projects (6 products + 9 client)
-    expect(within(grid).getAllByRole("link")).toHaveLength(15);
+    // default: all 13 projects (4 products + 9 client)
+    expect(within(grid).getAllByRole("heading", { level: 3 })).toHaveLength(13);
 
     fireEvent.click(screen.getByRole("button", { name: "Client Work" }));
-    await waitFor(() => expect(within(grid).getAllByRole("link")).toHaveLength(9));
+    await waitFor(() => expect(within(grid).getAllByRole("heading", { level: 3 })).toHaveLength(9));
 
     fireEvent.click(screen.getByRole("button", { name: "Products" }));
-    await waitFor(() => expect(within(grid).getAllByRole("link")).toHaveLength(6));
+    await waitFor(() => expect(within(grid).getAllByRole("heading", { level: 3 })).toHaveLength(4));
 
     fireEvent.click(screen.getByRole("button", { name: "All" }));
-    await waitFor(() => expect(within(grid).getAllByRole("link")).toHaveLength(15));
+    await waitFor(() => expect(within(grid).getAllByRole("heading", { level: 3 })).toHaveLength(13));
+  });
+
+  it("links case-study products internally and leaves dead client sites unlinked", () => {
+    render(<Work />);
+    const grid = screen.getByTestId("work-grid");
+    expect(within(grid).getByRole("link", { name: /Journey/ })).toHaveAttribute("href", "/work/journey");
+    expect(within(grid).getByRole("link", { name: /Plot Locator/ })).toHaveAttribute(
+      "href",
+      "https://plot-locator-abera.fly.dev"
+    );
+    expect(within(grid).queryByRole("link", { name: /Manetained/ })).toBeNull();
+    expect(within(grid).getByRole("heading", { name: "Manetained" })).toBeInTheDocument();
   });
 });

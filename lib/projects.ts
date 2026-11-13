@@ -1,3 +1,5 @@
+import { caseStudies } from "@/lib/caseStudies";
+
 export type ProjectCategory = "product" | "client";
 
 export interface Project {
@@ -6,69 +8,53 @@ export interface Project {
   tagline: string;
   category: ProjectCategory;
   tags: string[];
-  href: string;
+  /** Live URL. Omitted when the site no longer loads. */
+  href?: string;
   image: string;
   featured?: boolean;
 }
 
 export const projects: Project[] = [
   // ---- Products ----
+  // Only products with a live URL and a real screenshot belong here.
   {
-    slug: "caravan",
-    name: "Caravan",
-    tagline: "iOS social driving app — live convoys, shared routes, and trip history.",
+    slug: "journey",
+    name: "Journey",
+    tagline: "Trip planner that lays a multi-city trip out as one route.",
     category: "product",
-    tags: ["React Native", "Supabase", "MapKit"],
-    href: "https://github.com/itssamius",
-    image: "/work/caravan.svg",
+    tags: ["React", "SQLite", "WebSockets"],
+    href: "https://journey-abera.fly.dev",
+    image: "/work/journey.jpg",
     featured: true,
   },
   {
     slug: "blackjack",
     name: "Blackjack",
-    tagline: "Real-time multiplayer blackjack with a casino-style table UI.",
+    tagline: "Multiplayer blackjack for friends. Share a room code, no sign-up.",
     category: "product",
-    tags: ["Node", "WebSockets", "Fly.io"],
+    tags: ["Node", "socket.io", "Fly.io"],
     href: "https://blackjack-sam.fly.dev",
-    image: "/work/blackjack.svg",
+    image: "/work/blackjack.jpg",
     featured: true,
   },
   {
-    slug: "fitness-tracker",
-    name: "Fitness Tracker",
-    tagline: "Carb-cycle cut planner with AI photo macro-logging.",
+    slug: "folio",
+    name: "Folio",
+    tagline: "Site builder for designers, photographers and small studios.",
     category: "product",
-    tags: ["Next.js", "AI", "Vercel"],
-    href: "https://fitness-tracker-orpin-nu.vercel.app",
-    image: "/work/fitness-tracker.svg",
+    tags: ["Next.js", "Payload CMS", "SQLite"],
+    href: "https://makerfol.com",
+    image: "/work/folio.jpg",
     featured: true,
   },
   {
-    slug: "beamng-mapmaker",
-    name: "BeamNG MapMaker",
-    tagline: "Generates real-world drivable maps for BeamNG from OSM + DEM elevation.",
+    slug: "plot-locator",
+    name: "Plot Locator",
+    tagline: "Parcel map for parts of Ontario: boundary, lot area and zoning.",
     category: "product",
-    tags: ["Python", "Blender", "3D"],
-    href: "https://github.com/itssamius",
-    image: "/work/beamng.svg",
-  },
-  {
-    slug: "polymarket-copytrader",
-    name: "Polymarket Copy-Trader",
-    tagline: "Autonomous paper copy-trading bot for prediction markets.",
-    category: "product",
-    tags: ["Convex", "TypeScript"],
-    href: "https://github.com/itssamius",
-    image: "/work/polymarket.svg",
-  },
-  {
-    slug: "trivia",
-    name: "Trivia Live",
-    tagline: "Real-time Kahoot-style multiplayer trivia.",
-    category: "product",
-    tags: ["React", "WebSockets"],
-    href: "https://github.com/itssamius",
-    image: "/work/trivia.svg",
+    tags: ["React", "MapLibre", "PostGIS"],
+    href: "https://plot-locator-abera.fly.dev",
+    image: "/work/plot-locator.jpg",
   },
   // ---- Client work ----
   {
@@ -95,7 +81,6 @@ export const projects: Project[] = [
     tagline: "Customizable beard-care e-commerce store.",
     category: "client",
     tags: ["Shopify", "Liquid"],
-    href: "https://manetained.com/",
     image: "/work/manetained-hero.jpg",
   },
   {
@@ -104,7 +89,6 @@ export const projects: Project[] = [
     tagline: "Online ordering for a Toronto butcher shop.",
     category: "client",
     tags: ["Shopify", "Liquid"],
-    href: "https://paramountbutchershop.com/",
     image: "/work/paramountbutchershop-hero.jpg",
   },
   {
@@ -149,10 +133,17 @@ export const projects: Project[] = [
     tagline: "Neighbourhood butcher e-commerce storefront.",
     category: "client",
     tags: ["Shopify", "Liquid"],
-    href: "https://thefriendlybutcher.com/",
+    href: "https://friendlybutchershop.com/",
     image: "/work/friendlybutchershop-hero.jpg",
   },
 ];
+
+/** Where a card goes: its case study if it has one, else the live site, else nowhere. */
+export function projectLink(p: Project): { href: string; external: boolean } | null {
+  if (p.slug in caseStudies) return { href: `/work/${p.slug}`, external: false };
+  if (p.href) return { href: p.href, external: true };
+  return null;
+}
 
 export const featuredProjects = projects.filter((p) => p.featured);
 
